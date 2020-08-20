@@ -1,0 +1,30 @@
+#服务的提供者的配置文件
+server:
+  port: 8001
+spring:
+  application:
+    name: TEST-PROVIDER  #服务名称，随便取
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost/jfx-demo?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123
+    
+#注册中心
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:7001/eureka #注册到Eureka的地址
+      
+#Mybatis-plus
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*.xml
+  type-aliases-package: com.example.provider.entity
+  global-config:
+    db-config:
+      id-type: auto
+      field-strategy: not_null
+      table-underline: true
+      logic-delete-value: 1 # 数据库删除字段,1代表删除
+      logic-not-delete-value: 0 # 0代表没删除
+    banner: false

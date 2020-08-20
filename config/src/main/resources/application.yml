@@ -1,0 +1,19 @@
+#配置中心的配置文件
+server:
+  port: 1299
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:7001/eureka
+  instance:
+    prefer-ip-address: true
+spring:
+  application:
+    name: CONFIG-SERVER
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/dlz729/test.git #git文件地址
+          username: dlz0729@126.com #Github账号
+          password: duan07295413  #GitHub账号密码

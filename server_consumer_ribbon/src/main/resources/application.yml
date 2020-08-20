@@ -1,0 +1,8 @@
+#负载均衡 服务调用者配置文件
+server:
+  port: 9003
+eureka:
+  client:
+    register-with-eureka: false  #不注册到Eureka,不在注册中心显示
+    service-url:
+      defaultZone: http://127.0.0.1:7001/eureka

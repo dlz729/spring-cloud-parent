@@ -1,0 +1,11 @@
+#基于熔断器的消费者
+server:
+  port: 9004
+eureka:
+  client:
+    registerWithEureka: false #不注册到Eureka,不在注册中心显示
+    service-url:
+      defaultZone: http://127.0.0.1:7001/eureka
+feign:
+  hystrix:
+    enabled: true #开启熔断支持
