@@ -15,7 +15,13 @@ eureka:
   client:
     service-url:
       defaultZone: http://127.0.0.1:7001/eureka/ #注册到Eureka的地址
-      
+  #服务续约
+  instance:
+    #定义服务续约任务的调用间隔时间，默认为30s,即每30s维护一个心跳用来持续告诉注册中心，“我还活着”，以防止注册中心的“剔除任务”
+    lease-renewal-interval-in-seconds: 30
+    #定义服务失效的时间，默认为90s
+    lease-expiration-duration-in-seconds: 90 
+
 #Mybatis-plus
 mybatis-plus:
   mapper-locations: classpath:/mapper/*.xml

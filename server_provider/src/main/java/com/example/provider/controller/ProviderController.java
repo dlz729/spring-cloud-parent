@@ -16,6 +16,6 @@ public class ProviderController {
 
     @RequestMapping(value = "/get")
     public String getData() {
-        return "提供了数据";
+        return "服务提供者，提供了数据";
     }
 }
