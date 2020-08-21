@@ -1,6 +1,7 @@
 package com.example.ribbon.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -14,7 +15,7 @@ import org.springframework.web.client.RestTemplate;
 @RequestMapping("consumer")
 public class ConsumerRibbonController {
     @Autowired
-    private RestTemplate restTemplate;
+    private RestTemplate restTemplate;    
     
     private final String URL="http://TEST-PROVIDER/provider/get";
     
