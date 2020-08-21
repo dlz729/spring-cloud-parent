@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 /**
- * 服务注册中心的启动类
+ * 服务注册中心的启动类2
  * 通过@EnableEurekaServer注解启动一个服务注册中心提供给其他应用进行对话。
  *
  * @author dlz
@@ -16,8 +16,8 @@ import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 @SpringBootConfiguration
 @EnableEurekaServer
 @SpringBootApplication
-public class Application_Eureka {
+public class Application_Eureka2 {
     public static void main(String[] args) {
-        SpringApplication.run(Application_Eureka.class);
+        SpringApplication.run(Application_Eureka2.class);
     }
 }

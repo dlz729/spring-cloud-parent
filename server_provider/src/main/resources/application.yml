@@ -1,4 +1,4 @@
-#服务的提供者的配置文件
+#服务的提供者1的配置文件
 server:
   port: 8001
 spring:
@@ -14,7 +14,7 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://127.0.0.1:7001/eureka #注册到Eureka的地址
+      defaultZone: http://127.0.0.1:7001/eureka/,http://127.0.0.1:7002/eureka/ #注册到Eureka的地址
       
 #Mybatis-plus
 mybatis-plus:

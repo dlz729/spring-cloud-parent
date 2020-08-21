@@ -1,6 +1,6 @@
-#服务注册中心1的配置文件
+#服务注册中心2的配置文件
 server:
-  port: 7001
+  port: 7002
 eureka:
   instance:
     hostname: 127.0.0.1
@@ -10,10 +10,10 @@ eureka:
     #由于该应用为注册中心，所以设置为false，代表不向注册中心注册自己
     register-with-eureka: true
     service-url:
-      #defaultZone: http://127.0.0.1:7001/eureka #覆盖注册中心默认的8761端口
-      defaultZone: http://127.0.0.1:7002/eureka/
+      defaultZone: http://127.0.0.1:7001/eureka #覆盖注册中心默认的8761端口
+      #defaultZone: http://${eureka.instance.hostname}:7001/eureka/
   server:
     enable-self-preservation: false #简单粗暴的方式将保护模式关闭
 spring:
   application:
-    name: eureka-server
+    name: eureka-server2

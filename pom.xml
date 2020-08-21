@@ -22,6 +22,7 @@
         <module>server_consumer_ribbon</module>
         <module>server_hystrix_provider</module>
         <module>server_hystrix_consumer_fegin</module>
+        <module>eureka_server2</module>
     </modules>
     
     <properties>
