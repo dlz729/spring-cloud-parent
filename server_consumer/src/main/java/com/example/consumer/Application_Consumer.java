@@ -11,7 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @description
  */
 @SpringBootApplication
-public class Application_Consumer {
+public class Application_Consumer {    
     public static void main(String[] args) {
         SpringApplication.run(Application_Consumer.class);
     }
