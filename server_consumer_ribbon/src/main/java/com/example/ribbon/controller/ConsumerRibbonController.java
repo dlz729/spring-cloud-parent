@@ -1,10 +1,10 @@
 package com.example.ribbon.controller;
 
+import com.example.ribbon.service.ConsumerRibbonService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 /**
  * @author dlz
@@ -14,14 +14,22 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 @RequestMapping("consumer")
 public class ConsumerRibbonController {
+    // @Autowired
+    // private RestTemplate restTemplate; 
+    //
+    // private final String URL="http://TEST-PROVIDER/provider/get";
+    //
+    // @RequestMapping("get")
+    // public String getData(){
+    //     String data=restTemplate.getForObject(URL,String.class);
+    //     return data;
+    // }
+
     @Autowired
-    private RestTemplate restTemplate;    
-    
-    private final String URL="http://TEST-PROVIDER/provider/get";
-    
-    @RequestMapping("get")
-    public String getData(){
-        String data=restTemplate.getForObject(URL,String.class);
-        return data;
+    ConsumerRibbonService consumerRibbonService;
+
+    @RequestMapping(value = "/get", method = RequestMethod.GET)
+    public String getData() {
+        return consumerRibbonService.getData();
     }
 }
