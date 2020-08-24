@@ -6,8 +6,6 @@ import com.example.provider.mapper.UserMapper;
 import com.example.provider.redis.RedisUtil;
 import com.example.provider.service.UserService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
