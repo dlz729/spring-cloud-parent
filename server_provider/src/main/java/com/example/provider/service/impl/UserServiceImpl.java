@@ -25,11 +25,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     private RedisUtil redisUtil;
     @Override
     public int add(User user) {
-        log.info("新增开始...");
+        log.info("新增开始......");
         Integer result=baseMapper.insert(user);
         //设置缓存时间
         redisUtil.set(user.getLoginName(),user.getPassWord(),1000L);
-        log.info("新增结束...");
+        log.info("新增结束......");
         return result;
     }
 }
