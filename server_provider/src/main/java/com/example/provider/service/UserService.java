@@ -11,5 +11,10 @@ import com.example.provider.entity.User;
  * @description
  */
 public interface UserService extends IService<User> {
+    /**
+     * 添加用户
+     * @param user
+     * @return
+     */
     int add(User user);
 }
