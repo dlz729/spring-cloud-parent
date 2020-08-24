@@ -14,15 +14,15 @@
         <module>config</module>
         <module>config_client_provider</module>
         <module>eureka_server</module>
+        <module>eureka_server2</module>
         <module>server_consumer</module>
         <module>server_consumer_fegin</module>
-        <module>server_provider</module>
-        <module>zuul</module>
-        <module>server_provider2</module>
         <module>server_consumer_ribbon</module>
-        <module>server_hystrix_provider</module>
         <module>server_hystrix_consumer_fegin</module>
-        <module>eureka_server2</module>
+        <module>server_hystrix_provider</module>
+        <module>server_provider</module>
+        <module>server_provider2</module>
+        <module>zuul</module>
     </modules>
     
     <properties>
