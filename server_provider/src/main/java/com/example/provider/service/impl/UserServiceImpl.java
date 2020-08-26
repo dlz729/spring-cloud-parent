@@ -6,6 +6,7 @@ import com.example.provider.mapper.UserMapper;
 import com.example.provider.redis.RedisUtil;
 import com.example.provider.service.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
@@ -22,6 +23,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Resource
     private RedisUtil redisUtil;
+    @Autowired
+    private UserMapper userMapper;
 
     @Override
     public int add(User user) {
@@ -52,5 +55,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         }
         log.info("查询结束......");
         return user;
+    }
+
+    @Override
+    public boolean updateUserById(User user){
+        boolean b=userMapper.updateUserById(user);
+        if(b){
+            //修改成功更新redis缓存
+            redisUtil.set(user.getId().toString(),user);
+            log.info("修改成功，并将修改后的信息更新到redis缓存中......");
+        }
+        return b;
     }
 }

@@ -21,8 +21,17 @@ public interface UserService extends IService<User> {
 
     /**
      * 获得用户
+     *
      * @param id
      * @return
      */
     User get(Integer id);
+
+    /**
+     * 修改
+     *
+     * @param user
+     * @return
+     */
+    boolean updateUserById(User user);
 }

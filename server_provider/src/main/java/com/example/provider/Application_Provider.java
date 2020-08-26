@@ -3,6 +3,7 @@ package com.example.provider;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.context.annotation.ComponentScan;
 
 /**
  * 服务提供者的启动类
