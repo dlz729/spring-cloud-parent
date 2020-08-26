@@ -28,10 +28,10 @@ public class ConsumerController {
     @RequestMapping(value="/consumer-fegin2",method = RequestMethod.GET)
     public String helloConsumer2(){
         StringBuffer sb=new StringBuffer();
-        sb.append(helloService.getData()).append("\t");
-        sb.append(helloService.hello("DIDI")).append("\t");
-        sb.append(helloService.hello("DIDI",30)).append("\t");
-        sb.append(helloService.hello(new UserVo("DIDI",30))).append("\t");        
+        sb.append(helloService.getData()).append("\n");
+        sb.append(helloService.hello("DIDI")).append("\n");
+        sb.append(helloService.hello("DIDI",30)).append("\n");
+        sb.append(helloService.hello(new UserVo("DIDI",30))).append("\n");        
         return sb.toString();
     }
 }
