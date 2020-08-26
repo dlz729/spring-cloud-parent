@@ -14,7 +14,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  */
 @SpringBootApplication
 @EnableEurekaClient
-@EnableFeignClients("com.example.fegin.client")         //feign接口的地址
+@EnableFeignClients("com.example.fegin.service.fegin")         //feign接口的地址
 public class Application_Fegin {
     public static void main(String[] args) {
         SpringApplication.run(Application_Fegin.class);
