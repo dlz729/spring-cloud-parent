@@ -19,7 +19,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    String msg;
+    String msg; 
 
     @RequestMapping("add")
     public String addUser() {
