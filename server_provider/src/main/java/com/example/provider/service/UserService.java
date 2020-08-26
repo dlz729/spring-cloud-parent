@@ -13,8 +13,16 @@ import com.example.provider.entity.User;
 public interface UserService extends IService<User> {
     /**
      * 添加用户
+     *
      * @param user
      * @return
      */
     int add(User user);
+
+    /**
+     * 获得用户
+     * @param id
+     * @return
+     */
+    User get(Integer id);
 }
