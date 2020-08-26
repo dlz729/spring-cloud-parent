@@ -23,6 +23,7 @@
         <module>server_provider</module>
         <module>server_provider2</module>
         <module>zuul</module>
+        <module>hello-service-api</module>
     </modules>
     
     <properties>
