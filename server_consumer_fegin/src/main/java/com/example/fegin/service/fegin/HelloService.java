@@ -1,6 +1,5 @@
 package com.example.fegin.service.fegin;
 
-import com.example.fegin.config.DisableHystrixConfiguration;
 import com.example.fegin.config.FullLogConfiguration;
 import com.example.fegin.entity.vo.UserVo;
 import com.example.fegin.hystrix.HelloServiceFallback;
@@ -20,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @date 2020/8/26
  * @description
  */
-@FeignClient(value = "TEST-PROVIDER", configuration = FullLogConfiguration.class, fallback = HelloServiceFallback.class)
+@FeignClient(value = "TEST-PROVIDER", fallback = HelloServiceFallback.class,configuration = FullLogConfiguration.class)
 @Component
 public interface HelloService {
 

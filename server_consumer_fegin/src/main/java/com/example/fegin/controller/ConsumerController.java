@@ -43,7 +43,7 @@ public class ConsumerController {
     }
 
     @RequestMapping(value = "/consumer-fegin3", method = RequestMethod.GET)
-    public String helloConsumer3(){
+    public String helloConsumer3() {
         StringBuffer sb = new StringBuffer();
         sb.append(helloService.getData()).append("\n");
         sb.append(helloService.hello("MIMI")).append("\n");

@@ -1,9 +1,13 @@
 package com.example.zuul;
 
+import com.example.zuul.filter.AccessFilter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
+import org.springframework.context.annotation.Bean;
 
 /**
  * 网关启动类
@@ -12,11 +16,16 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
  * @date 2020/6/23
  * @description
  */
-@SpringBootApplication
-@EnableEurekaClient
 @EnableZuulProxy
+@EnableEurekaClient
+@SpringCloudApplication
 public class Application_Zuul {
     public static void main(String[] args) {
-        SpringApplication.run(Application_Zuul.class);
+        new SpringApplicationBuilder(Application_Zuul.class).web(true).run(args);
+    }
+    
+    @Bean
+    public AccessFilter accessFilter(){
+        return  new AccessFilter();
     }
 }

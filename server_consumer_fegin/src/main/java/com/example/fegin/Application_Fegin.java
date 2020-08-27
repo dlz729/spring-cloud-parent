@@ -1,11 +1,9 @@
 package com.example.fegin;
 
-import feign.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
-import org.springframework.context.annotation.Bean;
 
 /**
  * 内部服务启动类
@@ -28,7 +26,7 @@ public class Application_Fegin {
     // Logger.Level feginLoggerLevel() {
     //     return Logger.Level.FULL;
     // }
-
+    
     public static void main(String[] args) {
         SpringApplication.run(Application_Fegin.class);
     }

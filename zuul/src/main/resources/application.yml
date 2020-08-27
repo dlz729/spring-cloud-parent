@@ -12,9 +12,16 @@ eureka:
     prefer-ip-address: true
 zuul:
   routes:
-    provider.serviceId: TEST-PROVIDER    #没有提示，自己取名称，值为服务的名称。1、通过网关访问服务提供，请求地址为：127.0.0.1:9527/zuul-server/test-provider/provider/get
-    provider.path: /test/**  #匹配指定的路径，资源匹配的路径才会拦截，转发。2、这时再次访问服务的提供者，请求地址变成：127.0.0.1:9527/test/provider/get
-    configProvider.serviceId: MICRO-SERVER-DEV  #新增
-    configProvider.path: /config-provide/**  #新增
-  ignored-services: "*"  #忽略直接使用服务名   *忽略所有的服务
-  prefix: /server #统一给访问前缀。3、这时，访问服务的提供者，请求的地址为：127.0.0.1:9527/server/test/provider/get
+    api-a:
+      path: /api-a/**
+      serviceId: TEST-PROVIDER
+    api-b:
+      path: /api-b/**
+      serviceId: FEGIN-CONSUMER
+#    provider:
+#      serviceId: FEGIN-CONSUMER  #没有提示，自己取名称，值为服务的名称。1、通过网关访问服务提供，请求地址为：127.0.0.1:9527/zuul-server/fegin-consumer/consumer-fegin
+#      path: /test/**  #匹配指定的路径，资源匹配的路径才会拦截，转发。2、这时再次访问服务的提供者，请求地址变成：127.0.0.1:9527/test/consumer-fegin
+#    configProvider.serviceId: MICRO-SERVER-DEV  #新增
+#    configProvider.path: /config-provide/**  #新增
+#  ignored-services: "*"  #忽略直接使用服务名   *忽略所有的服务
+#  prefix: /server #统一给访问前缀。3、这时，访问服务的提供者，请求的地址为：127.0.0.1:9527/server/test/consumer-fegin
