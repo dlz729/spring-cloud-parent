@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class RefactorHelloController implements HelloService {
     public String hello(String name) {
-        return "Hello"+name;
+        return "Hello"+name; 
     }
 
     public UserVo hello(String name, Integer age) {
