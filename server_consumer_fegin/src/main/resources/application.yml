@@ -12,3 +12,7 @@ TEST-PROVIDER:
     ConnectTimeout: 500
     ReadTimeout: 2000
     OkToRetryOnAllOperations: true
+#参数配置来开启指定Fegin客户端的DEBUG日志
+logging:
+  level: 
+    com.example.fegin.service.fegin.HelloService: debug
