@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: zuul_dynamic
+  cloud:
+    config:
+      uri: http://localhost:1299/
+server:
+  port: 9528
+eureka:
+  client:
+    service-url: 
+      defaultZone: http://127.0.0.1:7001/eureka

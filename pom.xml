@@ -24,6 +24,7 @@
         <module>server_provider2</module>
         <module>zuul</module>
         <module>hello-service-api</module>
+        <module>zuul_dynamic</module>
     </modules>
     
     <properties>
