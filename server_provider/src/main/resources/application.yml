@@ -1,6 +1,6 @@
 #服务的提供者1的配置文件
 server:
-  port: 8001
+  port: ${port:8001}
 spring:
   application:
     name: TEST-PROVIDER  #服务名称，随便取
