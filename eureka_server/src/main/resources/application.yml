@@ -1,6 +1,9 @@
 #服务注册中心1的配置文件
 server:
   port: 7001
+spring:
+  application:
+    name: eureka-server
 eureka:
   instance:
     hostname: 127.0.0.1
@@ -13,7 +16,7 @@ eureka:
       #defaultZone: http://127.0.0.1:7001/eureka #覆盖注册中心默认的8761端口
       defaultZone: http://127.0.0.1:7002/eureka/
   server:
-    enable-self-preservation: true #简单粗暴的方式将保护模式关闭
-spring:
-  application:
-    name: eureka-server
+    #关闭自我保护模式（默认是打开的）
+    enable-self-preservation: false
+    #服务失效踢出时间间隔，默认60秒
+    eviction-interval-timer-in-ms: 60000 

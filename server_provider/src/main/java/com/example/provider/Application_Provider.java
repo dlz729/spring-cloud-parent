@@ -13,7 +13,7 @@ import org.springframework.context.annotation.ComponentScan;
  * @description
  */
 @SpringBootApplication
-@EnableEurekaClient
+@EnableEurekaClient //开启Eureka服务发现
 public class Application_Provider {
     public static void main(String[] args) {
         SpringApplication.run(Application_Provider.class);
