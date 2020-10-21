@@ -4,6 +4,10 @@ import com.netflix.loadbalancer.IRule;
 import com.netflix.loadbalancer.RandomRule;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.cloud.client.SpringCloudApplication;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
@@ -16,8 +20,10 @@ import org.springframework.web.client.RestTemplate;
  * @date 2020/6/23
  * @description
  */
-@SpringBootApplication
-@EnableEurekaClient //开启Eureka服务发现
+@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
+@EnableEurekaClient //开启Eureka客户端发现功能
+@EnableCircuitBreaker  //开启熔断
+//@SpringCloudApplication   //SpringCloudApplication包含上面三个注解
 public class Application_Consumer {
     public static void main(String[] args) {
         SpringApplication.run(Application_Consumer.class);
@@ -36,5 +42,4 @@ public class Application_Consumer {
         // return new RetryRule();
         //return new WeightedResponseTimeRule();
     }
-
 }

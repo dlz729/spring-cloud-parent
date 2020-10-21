@@ -38,6 +38,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public User get(Integer id) {
+        // try {
+        //     Thread.sleep(2000);
+        // } catch (InterruptedException e) {
+        //     e.printStackTrace();
+        // }
         User user;
         log.info("查询开始......");
         user = (User) redisUtil.get(id.toString());
@@ -58,11 +63,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
-    public boolean updateUserById(User user){
-        boolean b=userMapper.updateUserById(user);
-        if(b){
+    public boolean updateUserById(User user) {
+        boolean b = userMapper.updateUserById(user);
+        if (b) {
             //修改成功更新redis缓存
-            redisUtil.set(user.getId().toString(),user);
+            redisUtil.set(user.getId().toString(), user);
             log.info("修改成功，并将修改后的信息更新到redis缓存中......");
         }
         return b;

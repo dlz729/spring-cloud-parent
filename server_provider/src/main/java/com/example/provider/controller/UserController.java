@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @description
  */
 @RestController
-@RequestMapping("user")
+@RequestMapping("/user")
 @MapperScan(basePackages = {"com.example.provider.mapper"})
 public class UserController {
     @Autowired
@@ -28,7 +28,7 @@ public class UserController {
 
     String msg;
 
-    @RequestMapping("add")
+    @RequestMapping("/add")
     public String addUser() {
         User u = new User(null, "张三丰", "123");
         Integer result = userService.add(u);
@@ -40,7 +40,7 @@ public class UserController {
         return msg;
     }
 
-    @RequestMapping(value = "get/{id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/get/{id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public String getUser(@PathVariable Integer id) {
         User user = userService.get(id);
         if (!ObjectUtils.isEmpty(user)) {
@@ -51,7 +51,7 @@ public class UserController {
         return msg;
     }
 
-    @RequestMapping(value = "update/{id}")
+    @RequestMapping(value = "/update/{id}")
     public String updateUser(@PathVariable Integer id) {
         boolean b = userService.updateUserById(new User(id, "z三丰", "123456"));
         if (b) {

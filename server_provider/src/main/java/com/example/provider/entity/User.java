@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.Version;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
@@ -18,6 +19,7 @@ import java.io.Serializable;
  */
 @Data
 @TableName("user2")
+@NoArgsConstructor
 @AllArgsConstructor
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
