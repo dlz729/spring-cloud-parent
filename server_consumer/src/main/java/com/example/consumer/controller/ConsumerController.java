@@ -42,7 +42,7 @@ public class ConsumerController {
         // ServiceInstance serviceInstance = serviceInstances.get(0);
         // //动态获取服务拼接请求地址
         // url = "http://" + serviceInstance.getHost() + ":" + serviceInstance.getPort() + "/provider/get";
-        String url = "http://TEST-PROVIDER/user/get/" + id;
+        String url = "http://TEST-PROVIDER/user/" + id;
         return restTemplate.getForObject(url, String.class);
     }
 
