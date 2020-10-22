@@ -5,11 +5,10 @@ import com.netflix.loadbalancer.RandomRule;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
@@ -24,6 +23,7 @@ import org.springframework.web.client.RestTemplate;
 @EnableEurekaClient //开启Eureka客户端发现功能
 @EnableCircuitBreaker  //开启熔断
 //@SpringCloudApplication   //SpringCloudApplication包含上面三个注解
+@EnableFeignClients //开启Feign功能
 public class Application_Consumer {
     public static void main(String[] args) {
         SpringApplication.run(Application_Consumer.class);

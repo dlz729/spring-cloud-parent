@@ -23,6 +23,7 @@
         <module>zuul</module>
         <module>hello_service_api</module>
         <module>zuul_dynamic</module>
+        <module>gateway</module>
     </modules>
     
     <properties>

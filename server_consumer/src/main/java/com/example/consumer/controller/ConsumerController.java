@@ -26,10 +26,13 @@ public class ConsumerController {
     @Autowired
     private DiscoveryClient discoveryClient;
 
-    @GetMapping(value = "/user/get/{id}")
+    @GetMapping(value = "/user/{id}")
     //@HystrixCommand(fallbackMethod = "queryByIdFallback") // 单个的降级，如果每个请求对应一降级方法，类会很臃肿
     @HystrixCommand
-    public String queryById(@PathVariable Integer id) {
+    public String queryById(@PathVariable(value = "id") Integer id) {
+        if (id == 1) {
+            throw new RuntimeException("太忙了");
+        }
         //资源路径 写死的只能访问固定服务
         // String url = "http://127.0.0.1:8001/provider/get";
         // System.out.println("请求进来了");

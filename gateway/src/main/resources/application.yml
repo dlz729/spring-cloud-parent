@@ -1,0 +1,21 @@
+server:
+  port: 8889
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        #路由id，可以任意
+        - id: test-provider-route
+          #代理的服务地址
+          uri: http://127.0.0.1:8001
+          #路由断言：可以匹配映射路径
+          predicates:
+            - Path=/user/**
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:7001/eureka
+  instance:
+    prefer-ip-address: true #使用IP，不使用Host

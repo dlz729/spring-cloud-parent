@@ -40,7 +40,7 @@ public class UserController {
         return msg;
     }
 
-    @RequestMapping(value = "/get/{id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public String getUser(@PathVariable Integer id) {
         User user = userService.get(id);
         if (!ObjectUtils.isEmpty(user)) {
