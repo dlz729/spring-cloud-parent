@@ -13,7 +13,6 @@
     <modules>
         <module>config</module>
         <module>eureka_server</module>
-        <module>eureka_server2</module>
         <module>server_consumer</module>
         <module>server_provider</module>
         <module>gateway</module>
