@@ -4,7 +4,8 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: http://127.0.0.1:7001/eureka #注册到eureka
+      #注册到eureka，7001服务和7002服务
+      defaultZone: http://127.0.0.1:7001/eureka/, http://127.0.0.1:7002/eureka/
   instance:
     prefer-ip-address: true
 spring:

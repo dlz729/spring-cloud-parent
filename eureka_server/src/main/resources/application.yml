@@ -9,14 +9,14 @@ eureka:
     hostname: 127.0.0.1
   client:
     #由于注册中心的职责就是维护服务实例，它并不需要去检索服务，所以也设置为false
-    fetch-registry: true
-    #由于该应用为注册中心，所以设置为false，代表不向注册中心注册自己
+#    fetch-registry: true
+#    #由于该应用为注册中心，所以设置为false，代表不向注册中心注册自己
     register-with-eureka: true
     service-url:
       #defaultZone: http://127.0.0.1:7001/eureka #覆盖注册中心默认的8761端口
       defaultZone: ${defaultZone:http://127.0.0.1:7001/eureka/}
   server:
     #关闭自我保护模式（默认是打开的）
-    enable-self-preservation: false
+    enable-self-preservation: true
     #服务失效踢出时间间隔，默认60秒
     eviction-interval-timer-in-ms: 60000 

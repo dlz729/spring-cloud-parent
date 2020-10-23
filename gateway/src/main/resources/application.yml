@@ -39,7 +39,7 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://127.0.0.1:7001/eureka
+      defaultZone: http://127.0.0.1:7001/eureka/,http://127.0.0.1:7002/eureka/
   instance:
     prefer-ip-address: true #使用IP，不使用Host
 hystrix:
