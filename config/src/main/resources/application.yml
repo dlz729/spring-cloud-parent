@@ -17,3 +17,15 @@ spring:
           uri: https://github.com/dlz729/test.git #git文件地址
           username: dlz0729@126.com #Github账号
           password: duan07295413  #GitHub账号密码
+  #配置rabbitmq信息，如果是都与默认值一致，则不需要配置
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+management:
+  endpoints:
+    web:
+      exposure:
+        #暴露触发消息总线的地址
+        include: bus-refresh
