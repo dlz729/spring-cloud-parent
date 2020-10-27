@@ -2,6 +2,7 @@ package com.example.consumer.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.example.consumer.client.UserClient;
+import com.example.provider.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,7 +22,8 @@ public class ConsumerFeignController {
     private UserClient userClient;
 
     @GetMapping("/{id}")
-    public String queryById(@PathVariable(value = "id") Integer id) {
-        return JSONObject.toJSONString(userClient.queryById(id));
+    public User queryById(@PathVariable(value = "id") Integer id) {
+        // return JSONObject.toJSONString(userClient.queryById(id));
+        return userClient.queryById(id);
     }
 }

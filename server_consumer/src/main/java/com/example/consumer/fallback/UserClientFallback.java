@@ -13,10 +13,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserClientFallback implements UserClient {
     @Override
-    public String queryById(Integer id) {
+    public User queryById(Integer id) {
         User user=new User();
         user.setId(id);
         user.setLoginName("用户异常");
-        return user.toString();
+        return user;
     }
 }

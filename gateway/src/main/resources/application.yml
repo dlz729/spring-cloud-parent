@@ -7,16 +7,16 @@ spring:
     gateway:
       routes:
         #路由id，可以任意
-        - id: test-provider-route
+        - id: test-consumer-route
           #代理的服务地址
           #uri: http://127.0.0.1:8001
           #lb表示从eureka中获取具体的服务
-          uri: lb://TEST-PROVIDER
+          uri: lb://SERVER-CONSUMER
           #路由断言：可以匹配映射路径
           predicates:
 #            - Path=/user/**
 #            - Path=/**
-            - Path=/api/user/**
+            - Path=/api/**
           filters:
             #添加请求路径的前缀
 #            - PrefixPath=/user

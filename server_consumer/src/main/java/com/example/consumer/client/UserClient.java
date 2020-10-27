@@ -2,6 +2,7 @@ package com.example.consumer.client;
 
 import com.example.consumer.config.FeignConfig;
 import com.example.consumer.fallback.UserClientFallback;
+import com.example.provider.entity.User;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,5 +24,5 @@ public interface UserClient {
      * 该接口地址就是TEST_PROVIDER服务中的/user/get/{id}接口地址
      */
     @GetMapping("/user/{id}")
-    String queryById(@PathVariable(value = "id") Integer id);
+    User queryById(@PathVariable(value = "id") Integer id);
 }
