@@ -2,6 +2,7 @@ package com.example.provider.controller;
 
 import com.example.provider.entity.User;
 import com.example.provider.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
