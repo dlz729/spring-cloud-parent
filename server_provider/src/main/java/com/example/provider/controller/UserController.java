@@ -48,7 +48,7 @@ public class UserController {
     public String getUser(@PathVariable Integer id) {
         User user = userService.get(id);
         if (!ObjectUtils.isEmpty(user)) {
-            msg = "id:" + id + " " + "lohinName:" + user.getLoginName() + " " + "passWord:" + user.getPassWord()
+            msg = "id:" + id + " " + "loginName:" + user.getLoginName() + " " + "passWord:" + user.getPassWord()
                     + "\n"
                     + "配置文件中的test.name:" + name;
         } else {
