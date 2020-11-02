@@ -31,7 +31,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         log.info("新增开始......");
         Integer result = baseMapper.insert(user);
         //不设置缓存时间
-        redisUtil.set(user.getId().toString(), user);
+        //redisUtil.set(user.getId().toString(), user);
+        //设置缓存时间 30分钟
+        redisUtil.set(user.getId().toString(), user, 30 * 60L);
         log.info("新增结束......");
         return result;
     }
@@ -52,8 +54,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             if (ObjectUtils.isEmpty(user)) {
                 log.info("在数据库中也没有查询到该用户,该用户不存在......");
             } else {
-                log.info("在数据库中查询到了该用户,需要将它添加到redis缓存中......");
-                redisUtil.set(id.toString(), user);
+                log.info("在数据库中查询到了该用户,需要将它添加到redis缓存中,有效时间为30分钟......");
+                redisUtil.set(id.toString(), user, 30 * 60L);
             }
         } else {
             log.info("在redis缓存中查询到该用户，不需要到数据去查询......");
@@ -67,8 +69,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         boolean b = userMapper.updateUserById(user);
         if (b) {
             //修改成功更新redis缓存
-            redisUtil.set(user.getId().toString(), user);
-            log.info("修改成功，并将修改后的信息更新到redis缓存中......");
+            redisUtil.set(user.getId().toString(), user, 30 * 60L);
+            log.info("修改成功，并将修改后的信息更新到redis缓存中,有效时间为30分钟......");
         }
         return b;
     }
