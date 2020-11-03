@@ -1,5 +1,4 @@
 package com.example.provider.redis;
-
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.BoundListOperations;
 import org.springframework.data.redis.core.RedisTemplate;
