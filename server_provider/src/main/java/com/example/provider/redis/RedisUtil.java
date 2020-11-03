@@ -1,6 +1,7 @@
 package com.example.provider.redis;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.redis.core.BoundListOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
@@ -83,6 +84,8 @@ public final class RedisUtil {
         }
     }
 
+    //============================================ String ============================================
+
     /**
      * 普通缓存获取
      *
@@ -94,7 +97,7 @@ public final class RedisUtil {
     }
 
     /**
-     * put缓存放入
+     * 普通缓存放入
      *
      * @param key   键
      * @param value 值
@@ -116,7 +119,7 @@ public final class RedisUtil {
      * @param key   键
      * @param value 值
      * @param time  时间(秒) time要大于0 如果time小于等于0 将设置无限期
-     * @return true成功 false 失败
+     * @return true 成功 false 失败
      */
     public boolean set(String key, Object value, Long time) {
         try {
@@ -160,6 +163,8 @@ public final class RedisUtil {
         return redisTemplate.opsForValue().increment(key, -delta);
     }
 
+    //============================================ Map ============================================
+
     /**
      * HashGet
      *
@@ -167,7 +172,7 @@ public final class RedisUtil {
      * @param item 项 不能为null
      * @return 值
      */
-    public Object hashGet(String key, String item) {
+    public Object hGet(String key, String item) {
         return redisTemplate.opsForHash().get(key, item);
     }
 
@@ -177,7 +182,7 @@ public final class RedisUtil {
      * @param key 键
      * @return 对应的多个键值
      */
-    public Map<Object, Object> hashKeyGet(String key) {
+    public Map<Object, Object> hmGet(String key) {
         return redisTemplate.opsForHash().entries(key);
     }
 
@@ -188,7 +193,7 @@ public final class RedisUtil {
      * @param map 对应多个键值
      * @return true 成功 false 失败
      */
-    public boolean hashSet(String key, Map<String, Object> map) {
+    public boolean hmSet(String key, Map<String, Object> map) {
         try {
             redisTemplate.opsForHash().putAll(key, map);
             return true;
@@ -204,9 +209,9 @@ public final class RedisUtil {
      * @param key  键
      * @param map  对应多个键值
      * @param time 时间(秒)
-     * @return true成功 false失败
+     * @return true 成功 false 失败
      */
-    public boolean hashSet(String key, Map<String, Object> map, long time) {
+    public boolean hmSet(String key, Map<String, Object> map, long time) {
         try {
             redisTemplate.opsForHash().putAll(key, map);
             if (time > 0) {
@@ -225,9 +230,9 @@ public final class RedisUtil {
      * @param key   键
      * @param item  项
      * @param value 值
-     * @return true 成功 false失败
+     * @return true 成功 false 失败
      */
-    public boolean hashSet(String key, String item, Object value) {
+    public boolean hSet(String key, String item, Object value) {
         try {
             redisTemplate.opsForHash().put(key, item, value);
             return true;
@@ -246,7 +251,7 @@ public final class RedisUtil {
      * @param time  时间(秒) 注意:如果已存在的hash表有时间,这里将会替换原有的时间
      * @return true 成功 false失败
      */
-    public boolean hashSet(String key, String item, Object value, long time) {
+    public boolean hSet(String key, String item, Object value, long time) {
         try {
             redisTemplate.opsForHash().put(key, item, value);
             if (time > 0) {
@@ -265,7 +270,7 @@ public final class RedisUtil {
      * @param key  键 不能为null
      * @param item 项 可以使多个 不能为null
      */
-    public void delHashValue(String key, Object... item) {
+    public void hDel(String key, Object... item) {
         redisTemplate.opsForHash().delete(key, item);
     }
 
@@ -290,6 +295,9 @@ public final class RedisUtil {
      * @return
      */
     public double hinCr(String key, String item, double by) {
+        if (by < 0) {
+            throw new RuntimeException("递增因子必须大于0");
+        }
         return redisTemplate.opsForHash().increment(key, item, by);
     }
 
@@ -302,8 +310,13 @@ public final class RedisUtil {
      * @return
      */
     public double hdeCr(String key, String item, double by) {
+        if (by < 0) {
+            throw new RuntimeException("递增因子必须大于0");
+        }
         return redisTemplate.opsForHash().increment(key, item, -by);
     }
+
+    //============================================ Set ============================================
 
     /**
      * 根据key获取Set中的所有值
@@ -405,6 +418,8 @@ public final class RedisUtil {
         }
     }
 
+    //============================================ List ============================================
+
     /**
      * 获取list缓存的内容
      *
@@ -441,7 +456,7 @@ public final class RedisUtil {
      * 通过索引 获取list中的值
      *
      * @param key   键
-     * @param index 索引 index>=0时， 0 表头，1 第二个元素，依次类推；index<0时，-1，表尾，-2倒数第二个元素，依次类推
+     * @param index 索引 index>=0时，0 表头，1 第二个元素，依次类推；index<0时，-1，表尾，-2倒数第二个元素，依次类推
      * @return
      */
     public Object lGetIndex(String key, long index) {
@@ -564,4 +579,70 @@ public final class RedisUtil {
             return 0;
         }
     }
+
+    /**
+     * 模糊查询获取key值
+     *
+     * @param pattern
+     * @return
+     */
+    public Set keys(String pattern) {
+        return redisTemplate.keys(pattern);
+    }
+
+    /**
+     * 使用Redis的消息队列
+     *
+     * @param channel
+     * @param message 消息内容
+     */
+    public void convertAndSend(String channel, Object message) {
+        redisTemplate.convertAndSend(channel, message);
+    }
+
+    //==================================== BoundListOperations 用法 start ====================================
+
+    /**
+     * 将数据添加到Redis的list中（从右边添加）
+     *
+     * @param listKey
+     * @param expireEnum 有效期的枚举类
+     * @param values     待添加的数据
+     */
+    public void addToListRight(String listKey, Status.ExpireEnum expireEnum, Object... values) {
+        //绑定操作
+        BoundListOperations<String, Object> boundValueOperations = redisTemplate.boundListOps(listKey);
+        //插入数据
+        boundValueOperations.rightPushAll(values);
+        //设置过期时间
+        boundValueOperations.expire(expireEnum.getTime(), expireEnum.getTimeUnit());
+    }
+
+    /**
+     * 根据起始结束序号遍历Redis中的List
+     *
+     * @param listKey
+     * @param start   起始序号
+     * @param end     结束序号
+     * @return
+     */
+    public List<Object> rangeList(String listKey, long start, long end) {
+        //绑定操作
+        BoundListOperations<String, Object> boundListOperations = redisTemplate.boundListOps(listKey);
+        //查询数据
+        return boundListOperations.range(start, end);
+    }
+
+    /**
+     * 弹出右边的值 ---并且移除这个值
+     *
+     * @param listKey
+     * @return
+     */
+    public Object rightPop(String listKey) {
+        //绑定操作
+        BoundListOperations<String, Object> boundListOperations = redisTemplate.boundListOps(listKey);
+        return boundListOperations.rightPop();
+    }
+    //==================================== BoundListOperations 用法 end ======================================
 }
