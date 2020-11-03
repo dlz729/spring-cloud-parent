@@ -4,7 +4,6 @@ import feign.Logger;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-
 /**
  * @author dlz
  * @date 2020/10/22
