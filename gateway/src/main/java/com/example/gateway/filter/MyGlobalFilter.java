@@ -17,6 +17,7 @@ import reactor.core.publisher.Mono;
  */
 @Component
 public class MyGlobalFilter implements GlobalFilter, Ordered {
+    @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         System.out.println("-------------------全局过滤器MyGlobalFilter-----------------------");
         String token=exchange.getRequest().getQueryParams().getFirst("token");
@@ -28,6 +29,7 @@ public class MyGlobalFilter implements GlobalFilter, Ordered {
         return  chain.filter(exchange);
     }
 
+    @Override
     public int getOrder() {
         //值越小越先执行
         return 1;
