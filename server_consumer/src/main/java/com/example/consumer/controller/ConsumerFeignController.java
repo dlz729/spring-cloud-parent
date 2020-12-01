@@ -1,6 +1,5 @@
 package com.example.consumer.controller;
 
-import com.alibaba.fastjson.JSONObject;
 import com.example.consumer.client.UserClient;
 import com.example.provider.entity.User;
 import io.swagger.annotations.Api;
@@ -19,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @description
  */
 @RestController
-@Api(tags = "Feign调用")
+@Api(tags = "用户查询-Feign")
 @RequestMapping("/cf")
 public class ConsumerFeignController {
 

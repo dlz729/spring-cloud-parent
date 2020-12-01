@@ -2,6 +2,10 @@ package com.example.consumer.controller;
 
 import com.netflix.hystrix.contrib.javanica.annotation.DefaultProperties;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +21,7 @@ import org.springframework.web.client.RestTemplate;
  * @description
  */
 @RestController
+@Api(tags = "用户查询-服务名选择服务")
 @RequestMapping(value = "/consumer")
 @DefaultProperties(defaultFallback = "defaultFallback")
 public class ConsumerController {
@@ -27,6 +32,8 @@ public class ConsumerController {
     private DiscoveryClient discoveryClient;
 
     @GetMapping(value = "/user/{id}")
+    @ApiOperation("根据Id查询User信息")
+    @ApiImplicitParams({@ApiImplicitParam(name="id",value = "User的id",required = true,paramType ="query")})
     //@HystrixCommand(fallbackMethod = "queryByIdFallback") // 单个的降级，如果每个请求对应一降级方法，类会很臃肿
     @HystrixCommand
     public String queryById(@PathVariable(value = "id") Integer id) {
