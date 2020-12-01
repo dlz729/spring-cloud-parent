@@ -2,6 +2,7 @@ package com.example.provider.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.provider.entity.User;
+import com.example.provider.entity.User2;
 import com.example.provider.mapper.UserMapper;
 import com.example.provider.redis.RedisUtil;
 import com.example.provider.service.UserService;
@@ -63,6 +64,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         }
         log.info("查询结束......");
         return user;
+    }
+
+    @Override
+    public User2 findUser(User2 user2) {
+        return null;
     }
 
     @Override

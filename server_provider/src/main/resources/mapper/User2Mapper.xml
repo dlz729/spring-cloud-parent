@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.provider.mapper.User2Mapper">
+    <resultMap id="UserResult" type="com.example.provider.entity.User2">
+        <result property="id" column="id"/>
+        <result property="loginName" column="username"/>
+        <result property="passWord" column="password"/>
+        <result property="perms" column="perms"/>
+    </resultMap>
+
+    <select id="findUser" resultType="com.example.provider.entity.User2" resultMap="UserResult">
+		select * from user3 where login_Name=#{loginName} andpass_Word=#{passWord}
+	</select>
+
+</mapper>

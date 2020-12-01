@@ -2,6 +2,7 @@ package com.example.provider.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.provider.entity.User;
+import com.example.provider.entity.User2;
 
 /**
  * 服务类
@@ -34,4 +35,11 @@ public interface UserService extends IService<User> {
      * @return
      */
     boolean updateUserById(User user);
+
+    /**
+     *
+     * @param user2
+     * @return
+     */
+    User2 findUser(User2 user2);
 }
